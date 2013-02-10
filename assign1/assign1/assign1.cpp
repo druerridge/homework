@@ -34,6 +34,12 @@ bool g_bWireframeMode = false;
 
 bool g_bTextureMapped = false;
 
+bool g_bHeightMapCreated = false;
+
+GLuint MeshList = NULL;
+
+GLuint WireframeList = NULL;
+
 enum MESHMODE { VERTICES = -1, WIREFRAME = -2, SURFACE = -3, WIRE_AND_SURFACE = -4};
 
 MESHMODE g_MeshMode = SURFACE;
@@ -130,13 +136,56 @@ void spinCube()
   }
 }
 
-inline void makeHeightMap()
+void makeWireframeList()
 {
-  int width = 0;
   int height = 0;
+  int width = 0;
 
-  if (g_pHeightData->bpp == 1)
+  width = g_pHeightData->nx;
+  height = g_pHeightData->ny;
+
+  glBegin(GL_TRIANGLES);
+
+  glColor3f(0.0f, 1.0f, 0.0f); // all green in wireframe mode
+
+  for(int i = 0; i < height-1; i++)
   {
+    for (int j = 0; j < width-1; j++)
+    {
+      int xPos = j - width / 2;
+      int yPos = i - height / 2;
+
+      float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
+      glVertex3f(xPos, heightValue * maxHeight, yPos);
+        
+      heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
+      glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
+        
+      heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
+      glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
+        
+      if (i > 0)
+      {
+        int xPos = j - width / 2;
+        int yPos = i - height / 2;
+          
+        float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
+        glVertex3f(xPos, heightValue * maxHeight, yPos);
+
+        heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
+        glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
+
+        heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
+        glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
+      }
+    }
+  }
+
+  glEnd();
+}
+
+void makeMeshList()
+{
     int height = 0;
     int width = 0;
 
@@ -144,60 +193,64 @@ inline void makeHeightMap()
     height = g_pHeightData->ny;
     
     glBegin(GL_TRIANGLES);
-    
-    int val[2] = {0, 0};
-    glGetIntegerv(GL_POLYGON_MODE, val);
-    
-    if (g_bWireframeMode)
+
+    for(int i = 0; i < height-1; i++)
     {
-      /*  Wireframe Mode */
-
-      glColor3f(0.0f, 1.0f, 0.0f);
-
-      for(int i = 0; i < height-1; i++)
+      for (int j = 0; j < width-1; j++)
       {
-        for (int j = 0; j < width-1; j++)
+        int xPos = j - width / 2;
+        int yPos = i - height / 2;
+
+        float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
+        if (g_bTextureMapped)
         {
-          int xPos = j - width / 2;
-          int yPos = i - height / 2;
+          float rValue = float(PIC_PIXEL(g_pColorData, j, i, 0)) / 255.0f;
+          float gValue = float(PIC_PIXEL(g_pColorData, j, i, 1)) / 255.0f;
+          float bValue = float(PIC_PIXEL(g_pColorData, j, i, 2)) / 255.0f;
 
-          float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
-          glVertex3f(xPos, heightValue * maxHeight, yPos);
-        
-          heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
-          glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
-        
-          heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
-          glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
-        
-          if (i > 0)
-          {
-            int xPos = j - width / 2;
-            int yPos = i - height / 2;
-          
-            float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
-            glVertex3f(xPos, heightValue * maxHeight, yPos);
-
-            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
-            glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
-
-            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
-            glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
-          }
+          glColor3f(rValue, gValue, bValue);
         }
-      }
-    }
-    else
-    {
-      /* Normal Mesh Mode*/
+        else
+        {
+          glColor3f(0.0f, 0.0f, heightValue);
+        }
+        glVertex3f(xPos, heightValue * maxHeight, yPos);
+        
+        heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
+        if (g_bTextureMapped)
+        {
+          float rValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 0)) / 255.0f;
+          float gValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 1)) / 255.0f;
+          float bValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 2)) / 255.0f;
 
-      for(int i = 0; i < height-1; i++)
-      {
-        for (int j = 0; j < width-1; j++)
+          glColor3f(rValue, gValue, bValue);
+        }
+        else
+        {
+          glColor3f(0.0f, 0.0f, heightValue);
+        }
+        glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
+        
+        heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
+        if (g_bTextureMapped)
+        {
+          float rValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 0)) / 255.0f;
+          float gValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 1)) / 255.0f;
+          float bValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 2)) / 255.0f;
+
+          glColor3f(rValue, gValue, bValue);
+        }
+        else
+        {
+          glColor3f(0.0f, 0.0f, heightValue);
+        }
+        glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
+        
+        if (i > 0)
         {
           int xPos = j - width / 2;
           int yPos = i - height / 2;
-
+          
           float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
           if (g_bTextureMapped)
           {
@@ -212,7 +265,22 @@ inline void makeHeightMap()
             glColor3f(0.0f, 0.0f, heightValue);
           }
           glVertex3f(xPos, heightValue * maxHeight, yPos);
-        
+
+          heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
+          if (g_bTextureMapped)
+          {
+            float rValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 0)) / 255.0f;
+            float gValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 1)) / 255.0f;
+            float bValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 2)) / 255.0f;
+
+            glColor3f(rValue, gValue, bValue);
+          }
+          else
+          {
+            glColor3f(0.0f, 0.0f, heightValue);
+          }
+          glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
+
           heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
           if (g_bTextureMapped)
           {
@@ -227,81 +295,46 @@ inline void makeHeightMap()
             glColor3f(0.0f, 0.0f, heightValue);
           }
           glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
-        
-          heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
-          if (g_bTextureMapped)
-          {
-            float rValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 0)) / 255.0f;
-            float gValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 1)) / 255.0f;
-            float bValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 2)) / 255.0f;
-
-            glColor3f(rValue, gValue, bValue);
-          }
-          else
-          {
-            glColor3f(0.0f, 0.0f, heightValue);
-          }
-          glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
-        
-          if (i > 0)
-          {
-            int xPos = j - width / 2;
-            int yPos = i - height / 2;
-          
-            float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
-            if (g_bTextureMapped)
-            {
-              float rValue = float(PIC_PIXEL(g_pColorData, j, i, 0)) / 255.0f;
-              float gValue = float(PIC_PIXEL(g_pColorData, j, i, 1)) / 255.0f;
-              float bValue = float(PIC_PIXEL(g_pColorData, j, i, 2)) / 255.0f;
-
-              glColor3f(rValue, gValue, bValue);
-            }
-            else
-            {
-              glColor3f(0.0f, 0.0f, heightValue);
-            }
-            glVertex3f(xPos, heightValue * maxHeight, yPos);
-
-            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
-            if (g_bTextureMapped)
-            {
-              float rValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 0)) / 255.0f;
-              float gValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 1)) / 255.0f;
-              float bValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 2)) / 255.0f;
-
-              glColor3f(rValue, gValue, bValue);
-            }
-            else
-            {
-              glColor3f(0.0f, 0.0f, heightValue);
-            }
-            glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
-
-            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
-            if (g_bTextureMapped)
-            {
-              float rValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 0)) / 255.0f;
-              float gValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 1)) / 255.0f;
-              float bValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 2)) / 255.0f;
-
-              glColor3f(rValue, gValue, bValue);
-            }
-            else
-            {
-              glColor3f(0.0f, 0.0f, heightValue);
-            }
-            glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
-          }
         }
       }
     }
-    
-    glEnd();
-  }
-  else 
+
+  glEnd();
+}
+
+inline void makeHeightMap()
+{
+  if (g_bHeightMapCreated)
   {
-    printf("more than 1 byte per pixel in height map");
+    if (!g_bWireframeMode)
+    {
+      glCallList(MeshList);
+    }
+
+    if (g_MeshMode == MESHMODE::WIREFRAME || g_MeshMode == MESHMODE::WIRE_AND_SURFACE)
+    {
+      glCallList(WireframeList);
+    }
+
+    return; // don't make the lists if they've already been made
+  }
+  else
+  {
+    /* Make Mesh List */
+    MeshList = glGenLists(1);
+    glNewList(MeshList, GL_COMPILE);
+    makeMeshList();
+    glEndList();
+    glCallList(MeshList);
+
+    /* Make Mesh List */
+    WireframeList = glGenLists(2);
+    glNewList(WireframeList, GL_COMPILE);
+    makeWireframeList();
+    glEndList();
+    //glCallList(WireframeList); // won't get called on startup
+
+    g_bHeightMapCreated = true; // stops the list from being created again
   }
 }
 
