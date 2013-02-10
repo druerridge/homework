@@ -26,11 +26,13 @@ GLfloat delta = 10.0f;
 
 GLdouble FOV_Y = 120.0;
 
-GLfloat maxHeight = 50.0f;
+GLfloat maxHeight = 30.0f;
 
 GLfloat TRANSLATE_SPEED = 10.0f;
 
 bool g_bWireframeMode = false;
+
+bool g_bTextureMapped = false;
 
 enum MESHMODE { VERTICES = -1, WIREFRAME = -2, SURFACE = -3, WIRE_AND_SURFACE = -4};
 
@@ -48,6 +50,7 @@ GLfloat theta[3] = {0.0f,0.0f,0.0f};
 
 /* see <your pic directory>/pic.h for type Pic */
 Pic * g_pHeightData;
+Pic* g_pColorData;
 
 /* Write a screenshot to the specified filename */
 void saveScreenshot (char *filename)
@@ -134,6 +137,9 @@ inline void makeHeightMap()
 
   if (g_pHeightData->bpp == 1)
   {
+    int height = 0;
+    int width = 0;
+
     width = g_pHeightData->nx;
     height = g_pHeightData->ny;
     
@@ -184,6 +190,7 @@ inline void makeHeightMap()
     else
     {
       /* Normal Mesh Mode*/
+
       for(int i = 0; i < height-1; i++)
       {
         for (int j = 0; j < width-1; j++)
@@ -192,15 +199,48 @@ inline void makeHeightMap()
           int yPos = i - height / 2;
 
           float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
-          glColor3f(0.0f, 0.0f, heightValue);
+          if (g_bTextureMapped)
+          {
+            float rValue = float(PIC_PIXEL(g_pColorData, j, i, 0)) / 255.0f;
+            float gValue = float(PIC_PIXEL(g_pColorData, j, i, 1)) / 255.0f;
+            float bValue = float(PIC_PIXEL(g_pColorData, j, i, 2)) / 255.0f;
+
+            glColor3f(rValue, gValue, bValue);
+          }
+          else
+          {
+            glColor3f(0.0f, 0.0f, heightValue);
+          }
           glVertex3f(xPos, heightValue * maxHeight, yPos);
         
           heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
-          glColor3f(0.0f, 0.0f, heightValue);
+          if (g_bTextureMapped)
+          {
+            float rValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 0)) / 255.0f;
+            float gValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 1)) / 255.0f;
+            float bValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 2)) / 255.0f;
+
+            glColor3f(rValue, gValue, bValue);
+          }
+          else
+          {
+            glColor3f(0.0f, 0.0f, heightValue);
+          }
           glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
         
           heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
-          glColor3f(0.0f, 0.0f, heightValue);
+          if (g_bTextureMapped)
+          {
+            float rValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 0)) / 255.0f;
+            float gValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 1)) / 255.0f;
+            float bValue = float(PIC_PIXEL(g_pColorData, j, i + 1, 2)) / 255.0f;
+
+            glColor3f(rValue, gValue, bValue);
+          }
+          else
+          {
+            glColor3f(0.0f, 0.0f, heightValue);
+          }
           glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
         
           if (i > 0)
@@ -209,15 +249,48 @@ inline void makeHeightMap()
             int yPos = i - height / 2;
           
             float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
-            glColor3f(0.0f, 0.0f, heightValue);
+            if (g_bTextureMapped)
+            {
+              float rValue = float(PIC_PIXEL(g_pColorData, j, i, 0)) / 255.0f;
+              float gValue = float(PIC_PIXEL(g_pColorData, j, i, 1)) / 255.0f;
+              float bValue = float(PIC_PIXEL(g_pColorData, j, i, 2)) / 255.0f;
+
+              glColor3f(rValue, gValue, bValue);
+            }
+            else
+            {
+              glColor3f(0.0f, 0.0f, heightValue);
+            }
             glVertex3f(xPos, heightValue * maxHeight, yPos);
 
             heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
-            glColor3f(0.0f, 0.0f, heightValue);
+            if (g_bTextureMapped)
+            {
+              float rValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 0)) / 255.0f;
+              float gValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 1)) / 255.0f;
+              float bValue = float(PIC_PIXEL(g_pColorData, j + 1, i - 1, 2)) / 255.0f;
+
+              glColor3f(rValue, gValue, bValue);
+            }
+            else
+            {
+              glColor3f(0.0f, 0.0f, heightValue);
+            }
             glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
 
             heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
-            glColor3f(0.0f, 0.0f, heightValue);
+            if (g_bTextureMapped)
+            {
+              float rValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 0)) / 255.0f;
+              float gValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 1)) / 255.0f;
+              float bValue = float(PIC_PIXEL(g_pColorData, j + 1, i, 2)) / 255.0f;
+
+              glColor3f(rValue, gValue, bValue);
+            }
+            else
+            {
+              glColor3f(0.0f, 0.0f, heightValue);
+            }
             glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
           }
         }
@@ -228,7 +301,7 @@ inline void makeHeightMap()
   }
   else 
   {
-    printf("more than 1 byte per pixel");
+    printf("more than 1 byte per pixel in height map");
   }
 }
 
@@ -482,11 +555,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	g_pHeightData = jpeg_read((char*)argv[1], NULL);
-	if (!g_pHeightData)
+	
+  if (!g_pHeightData)
 	{
 	    printf ("error reading %s.\n", argv[1]);
 	    exit(2);
 	}
+  
+  // if there is a second parameter, it is the texture map
+  if (argc > 2)
+  {
+    g_bTextureMapped = true;
+    g_pColorData = jpeg_read((char*)argv[2], NULL);
+  }
+
+  if (g_bTextureMapped && !g_pColorData || g_pColorData && g_pColorData->bpp < 3)
+  {
+      printf ("error reading %s.\n", argv[2]);
+	    exit(3);
+  }
 
 	glutInit(&argc,(char**)argv);
   

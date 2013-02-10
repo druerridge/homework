@@ -1,73 +1,74 @@
-﻿Build started 2/7/2013 1:00:18 PM.
-     1>Project "C:\Users\Dru\Desktop\assign1\assign1\assign1.vcxproj" on node 2 (build target(s)).
+﻿Build started 2/9/2013 7:51:05 PM.
+     1>Project "E:\Workspace\homework\assign1\assign1\assign1.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\assign1.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"glut-3.7.6-bin" /IpicLibrary /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt assign1.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"glut-3.7.6-bin" /IpicLibrary /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt assign1.cpp stdafx.cpp
          assign1.cpp
-     1>assign1.cpp(39): warning C4101: 'j' : unreferenced local variable
+     1>assign1.cpp(55): warning C4101: 'j' : unreferenced local variable
+         stdafx.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Dru\Desktop\assign1\Release\assign1.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"glut-3.7.6-bin" /LIBPATH:picLibrary libjpeg.lib libtiff.lib picLibrary.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\assign1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Dru\Desktop\assign1\Release\assign1.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Dru\Desktop\assign1\Release\assign1.lib" /MACHINE:X86 Release\assign1.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Workspace\homework\assign1\Release\assign1.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"glut-3.7.6-bin" /LIBPATH:picLibrary libjpeg.lib libtiff.lib picLibrary.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\assign1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Workspace\homework\assign1\Release\assign1.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Workspace\homework\assign1\Release\assign1.lib" /MACHINE:X86 Release\assign1.obj
          Release\stdafx.obj
      1>MSVCRT.lib(cinitexe.obj) : warning LNK4098: defaultlib 'libcmtd.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
          Generating code
          Finished generating code
-     1>picLibrary.lib(pic.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(pic.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>picLibrary.lib(jpeg.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(jpeg.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>picLibrary.lib(ppm.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(ppm.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>picLibrary.lib(tiff.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(tiff.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcapimin.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcapimin.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcapistd.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcapistd.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcarith.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcarith.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcparam.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcparam.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdatadst.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdatadst.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcinit.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcinit.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcmaster.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcmaster.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcmarker.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcmarker.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcmainct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcmainct.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcprepct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcprepct.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jccoefct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jccoefct.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jccolor.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jccolor.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcsample.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcsample.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jchuff.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jchuff.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcdctmgr.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcdctmgr.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jfdctfst.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jfdctfst.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jfdctflt.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jfdctflt.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jfdctint.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jfdctint.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdapimin.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdapimin.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdapistd.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdapistd.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdarith.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdarith.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdatasrc.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdatasrc.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdmaster.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmaster.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdinput.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdinput.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdmarker.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmarker.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdhuff.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdhuff.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdmainct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmainct.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdcoefct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdcoefct.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdpostct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdpostct.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jddctmgr.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jddctmgr.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jidctfst.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jidctfst.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jidctflt.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jidctflt.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jidctint.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jidctint.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdsample.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdsample.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdcolor.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdcolor.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jquant1.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jquant1.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jquant2.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jquant2.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jdmerge.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmerge.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jaricom.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jaricom.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jcomapi.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcomapi.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jutils.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jutils.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jerror.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jerror.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jmemmgr.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jmemmgr.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-     1>libjpeg.lib(jmemnobs.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jmemnobs.obj)' or at 'C:\Users\Dru\Desktop\assign1\Release\vc100.pdb'; linking object as if no debug info
-         assign1.vcxproj -> C:\Users\Dru\Desktop\assign1\Release\assign1.exe
+     1>picLibrary.lib(pic.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(pic.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>picLibrary.lib(jpeg.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(jpeg.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>picLibrary.lib(ppm.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(ppm.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>picLibrary.lib(tiff.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'picLibrary.lib(tiff.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcapimin.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcapimin.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcapistd.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcapistd.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcarith.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcarith.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcparam.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcparam.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdatadst.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdatadst.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcinit.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcinit.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcmaster.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcmaster.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcmarker.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcmarker.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcmainct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcmainct.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcprepct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcprepct.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jccoefct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jccoefct.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jccolor.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jccolor.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcsample.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcsample.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jchuff.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jchuff.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcdctmgr.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcdctmgr.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jfdctfst.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jfdctfst.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jfdctflt.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jfdctflt.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jfdctint.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jfdctint.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdapimin.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdapimin.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdapistd.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdapistd.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdarith.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdarith.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdatasrc.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdatasrc.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdmaster.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmaster.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdinput.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdinput.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdmarker.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmarker.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdhuff.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdhuff.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdmainct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmainct.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdcoefct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdcoefct.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdpostct.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdpostct.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jddctmgr.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jddctmgr.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jidctfst.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jidctfst.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jidctflt.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jidctflt.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jidctint.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jidctint.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdsample.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdsample.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdcolor.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdcolor.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jquant1.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jquant1.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jquant2.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jquant2.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jdmerge.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jdmerge.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jaricom.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jaricom.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jcomapi.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jcomapi.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jutils.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jutils.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jerror.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jerror.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jmemmgr.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jmemmgr.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+     1>libjpeg.lib(jmemnobs.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'libjpeg.lib(jmemnobs.obj)' or at 'E:\Workspace\homework\assign1\Release\vc100.pdb'; linking object as if no debug info
+         assign1.vcxproj -> E:\Workspace\homework\assign1\Release\assign1.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Dru\Desktop\assign1\Release\assign1.exe;#1" /manifest Release\assign1.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Workspace\homework\assign1\Release\assign1.exe;#1" /manifest Release\assign1.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Release\assign1.unsuccessfulbuild".
          Touching "Release\assign1.lastbuildstate".
-     1>Done Building Project "C:\Users\Dru\Desktop\assign1\assign1\assign1.vcxproj" (build target(s)).
+     1>Done Building Project "E:\Workspace\homework\assign1\assign1\assign1.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.76
+Time Elapsed 00:00:00.90
