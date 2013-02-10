@@ -30,6 +30,8 @@ GLfloat maxHeight = 50.0f;
 
 GLfloat TRANSLATE_SPEED = 10.0f;
 
+bool g_bWireframeMode = false;
+
 enum MESHMODE { VERTICES = -1, WIREFRAME = -2, SURFACE = -3, WIRE_AND_SURFACE = -4};
 
 MESHMODE g_MeshMode = SURFACE;
@@ -88,9 +90,7 @@ void myinit()
 
 void inline makeCube(float color)
 {
-  int val[2];
-  glGetIntegerv(GL_POLYGON_MODE, val);
-  if (val[0] == GL_LINE)
+  if (g_bWireframeMode)
   {
     glBegin(GL_POLYGON);
       glVertex3f(-0.5f, -0.5f, 0.0f - color);
@@ -127,7 +127,7 @@ void spinCube()
   }
 }
 
-void makeHeightMap()
+inline void makeHeightMap()
 {
   int width = 0;
   int height = 0;
@@ -139,41 +139,87 @@ void makeHeightMap()
     
     glBegin(GL_TRIANGLES);
     
-    for(int i = 0; i < height-1; i++)
+    int val[2] = {0, 0};
+    glGetIntegerv(GL_POLYGON_MODE, val);
+    
+    if (g_bWireframeMode)
     {
-      for (int j = 0; j < width-1; j++)
-      {
-        int xPos = j - width / 2;
-        int yPos = i - height / 2;
+      /*  Wireframe Mode */
 
-        float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
-        glColor3f(0.0f, 0.0f, heightValue);
-        glVertex3f(xPos, heightValue * maxHeight, yPos);
-        
-        heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
-        glColor3f(0.0f, 0.0f, heightValue);
-        glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
-        
-        heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
-        glColor3f(0.0f, 0.0f, heightValue);
-        glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
-        
-        if (i > 0)
+      glColor3f(0.0f, 1.0f, 0.0f);
+
+      for(int i = 0; i < height-1; i++)
+      {
+        for (int j = 0; j < width-1; j++)
         {
           int xPos = j - width / 2;
           int yPos = i - height / 2;
+
+          float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
+          glVertex3f(xPos, heightValue * maxHeight, yPos);
+        
+          heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
+          glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
+        
+          heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
+          glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
+        
+          if (i > 0)
+          {
+            int xPos = j - width / 2;
+            int yPos = i - height / 2;
           
+            float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
+            glVertex3f(xPos, heightValue * maxHeight, yPos);
+
+            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
+            glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
+
+            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
+            glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
+          }
+        }
+      }
+    }
+    else
+    {
+      /* Normal Mesh Mode*/
+      for(int i = 0; i < height-1; i++)
+      {
+        for (int j = 0; j < width-1; j++)
+        {
+          int xPos = j - width / 2;
+          int yPos = i - height / 2;
+
           float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
           glColor3f(0.0f, 0.0f, heightValue);
           glVertex3f(xPos, heightValue * maxHeight, yPos);
-
-          heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
-          glColor3f(0.0f, 0.0f, heightValue);
-          glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
-
+        
           heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
           glColor3f(0.0f, 0.0f, heightValue);
           glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
+        
+          heightValue = float(PIC_PIXEL(g_pHeightData, j, i + 1, 1)) / 255.0f;
+          glColor3f(0.0f, 0.0f, heightValue);
+          glVertex3f(xPos, heightValue * maxHeight, yPos + 1);
+        
+          if (i > 0)
+          {
+            int xPos = j - width / 2;
+            int yPos = i - height / 2;
+          
+            float heightValue = float(PIC_PIXEL(g_pHeightData, j, i, 1)) / 255.0f;
+            glColor3f(0.0f, 0.0f, heightValue);
+            glVertex3f(xPos, heightValue * maxHeight, yPos);
+
+            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i - 1, 1)) / 255.0f;
+            glColor3f(0.0f, 0.0f, heightValue);
+            glVertex3f(xPos + 1, heightValue * maxHeight, yPos - 1);
+
+            heightValue = float(PIC_PIXEL(g_pHeightData, j + 1, i, 1)) / 255.0f;
+            glColor3f(0.0f, 0.0f, heightValue);
+            glVertex3f(xPos + 1, heightValue * maxHeight, yPos);
+          }
         }
       }
     }
@@ -200,6 +246,18 @@ void renderGroundPlane()
 
 inline void drawObjects()
 {  
+  int val[2];
+  glGetIntegerv(GL_POLYGON_MODE, val);
+
+  if(val[0] == GL_LINE)
+  {
+    g_bWireframeMode = true;
+  }
+  else
+  {
+    g_bWireframeMode = false;
+  }
+
   makeHeightMap();
   /*
   makeCube(0.0f);
@@ -223,7 +281,7 @@ void display()
   glTranslatef(g_vLandTranslate[0] * TRANSLATE_SPEED, g_vLandTranslate[1] * TRANSLATE_SPEED, g_vLandTranslate[2] * TRANSLATE_SPEED); 
 
   /*  Renders a ground plane, but it stays relative to the object */
-  renderGroundPlane();
+  //renderGroundPlane();
 
   /* Determine how to render the objects */
   switch (g_MeshMode)
@@ -238,10 +296,12 @@ void display()
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     break;
   case WIRE_AND_SURFACE:
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glPolygonOffset(0.0f,2); // turn off the z-buffer fighting?
-    drawObjects();
+    glPolygonOffset(1.0f,1.0f); // eliminate z-buffer fighting
+    glEnable(GL_POLYGON_OFFSET_FILL);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    drawObjects();
+    glDisable(GL_POLYGON_OFFSET_FILL);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     break;    
   }
 
@@ -403,7 +463,7 @@ void reshape(int width, int height)
   glRotatef(20.0f, 1.0f, 0.0f, 0.0f);
 
   // move the camera to make the heightfield visible
-  glTranslatef(0.0f,-100.0f, -150.0f);
+  glTranslatef(0.0f,-150.0f, -200.0f);
 
   glMatrixMode(GL_MODELVIEW);
 }
